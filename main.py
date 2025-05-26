@@ -4,7 +4,7 @@ from typing import List
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.future import select
 from models import Recipe
-from schemas import *
+from schemas import BookOut, BookIn
 from database import engine, session
 
 
