@@ -1,7 +1,7 @@
 from contextlib import asynccontextmanager
 from typing import List
 
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, HTTPException
 from sqlalchemy.future import select
 from models import Recipe
 from schemas import BookOut, BookIn
@@ -30,7 +30,9 @@ async def create_recipe(book: BookIn) -> Recipe:
 
 @app.get('/recipes/', response_model=List[BookOut])
 async def get_recipes() -> List[Recipe]:
-    res = await session.execute(select(Recipe).order_by(Recipe.count_views.desc(), Recipe.time_cook))
+    res = await session.execute(select(Recipe).
+                                order_by(Recipe.count_views.desc(),
+                                         Recipe.time_cook))
     return res.scalars().all()
 
 
