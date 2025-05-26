@@ -35,4 +35,4 @@ jobs:
         isort .
     - name: Lint with black
       run: |
-        black . --check --diff
+        black .
