@@ -32,4 +32,4 @@ jobs:
         flake8    
     - name: Lint with isort
       run: |
-        isort --check-only --diff
+        isort . --check --diff
