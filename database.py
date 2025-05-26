@@ -7,7 +7,7 @@ DATABASE_URL = "sqlite+aiosqlite:///./book.recipe.db"
 engine = create_async_engine(DATABASE_URL, echo=True)
 # expire_on_commit=False will prevent attributes from being expired
 # after commit.
-async_session = sessionmaker(
+async_session = async_sessionmaker(
     engine, expire_on_commit=False, class_=AsyncSession
 )
 session = async_session()
