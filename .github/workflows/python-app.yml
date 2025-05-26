@@ -33,3 +33,6 @@ jobs:
     - name: Lint with isort
       run: |
         isort . --check --diff
+    - name: Lint with black
+      run: |
+        black . --check --diff
