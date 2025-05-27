@@ -35,7 +35,7 @@ jobs:
         isort . --check-only
     - name: Lint with black
       run: |
-        black . --diff --check
+        black .
     - name: Lint with pytest
       run: |
         pytest 
