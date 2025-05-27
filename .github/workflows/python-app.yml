@@ -32,10 +32,10 @@ jobs:
         flake8    
     - name: Lint with isort
       run: |
-        isort .
+        isort . --check-only
     - name: Lint with black
       run: |
-        black .
+        black . --diff --check
     - name: Lint with pytest
       run: |
         pytest 
