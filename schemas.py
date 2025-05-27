@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class BaseRecipe(BaseModel):
@@ -16,5 +16,4 @@ class BookOut(BaseRecipe):
     count_views: int
     ingredients: str
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

@@ -3,8 +3,9 @@ from httpx import ASGITransport, AsyncClient
 
 from main import app
 
+pytestmark = pytest.mark.asyncio
 
-@pytest.mark.anyio
+
 async def test_post_recipes():
     new_recipe = {
         "name_recipe": "test",
@@ -20,7 +21,6 @@ async def test_post_recipes():
     assert responce.status_code == 200
 
 
-@pytest.mark.anyio
 async def test_get_recipe():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"

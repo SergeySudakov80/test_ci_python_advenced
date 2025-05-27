@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 from typing import List
 
 from fastapi import FastAPI, HTTPException
+from sqlalchemy import update
 from sqlalchemy.future import select
 
 from database import engine, session
@@ -44,6 +45,11 @@ async def get_recipe_by_id(recipe_id: int) -> Recipe:
         res = await async_session.get(Recipe, recipe_id)
         if res is None:
             raise HTTPException(status_code=404, detail="Рецепт не найден")
-        res.count_views += 1
+        new_count = res.count_views + 1
+        await async_session.execute(
+            update(Recipe).
+            where(Recipe.id == recipe_id).
+            values(count_views=new_count)
+        )
         await session.commit()
         return res
